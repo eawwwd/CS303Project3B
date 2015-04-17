@@ -9,5 +9,5 @@
 #include <iostream>
 
 int main() {
-     
+    
 }
