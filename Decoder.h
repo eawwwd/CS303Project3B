@@ -11,21 +11,37 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 #include "BTNode.h"
+#include <string>
+#include <map>
 
 class Decoder {
 public:
     //default constructor
-    Decoder(){
-        root = new BTNode<char>;
+    Decoder(std::istream& fin){
+        //create new root
+        decoderTree = new BTNode<char>;
+        if (fin.good()){
+            //read file into object, this will also be where the tree is built
+            while (!fin.eof()){
+                //populate enoder map
+                std::string tempStr = "";
+                getline(fin, tempStr);
+                encoder[tempStr[0]] = tempStr.substr(1, std::string::npos);
+            }
+        }
     }
     ~Decoder(){
-        delete root;
+        delete decoderTree;
     }
     
+    std::string encode(std::string alphaStr);
 private:
     //root
-    BTNode<char>* root = nullptr;
+    BTNode<char>* decoderTree = nullptr;
+    std::string decodedString = "";
+    std::map<char, std::string> encoder;
     
 };
 
