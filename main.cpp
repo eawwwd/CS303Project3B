@@ -7,7 +7,20 @@
 //
 
 #include <iostream>
+#include "Decoder.h"
+#include <fstream>
 
 int main() {
+    std::ifstream fin;
+    fin.open("code.txt", std::ifstream::in);
+    if (fin.good())
+        std::cout << "File opened!";
+    Decoder decoder(fin);
+    std::string inputStr;
     
+    std::cout << "Please enter string to be encoded:\n";
+    getline(std::cin, inputStr);
+    std::cout << decoder.encode(inputStr);
+    
+    return 0;
 }

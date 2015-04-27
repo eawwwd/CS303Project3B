@@ -14,7 +14,7 @@ template <typename Item_Type>
 
 class BTNode {
 private:
-    Item_Type data = nullptr;
+    Item_Type data = NULL;
     BTNode* left = nullptr;
     BTNode* right = nullptr;
     
