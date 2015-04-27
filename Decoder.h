@@ -28,7 +28,7 @@ public:
                 //populate enoder map
                 std::string tempStr = "";
                 getline(fin, tempStr);
-                encoder[tempStr[0]] = tempStr.substr(0, std::string::npos);
+                encoder[tempStr[0]] = tempStr.substr(1, std::string::npos);
             }
         }
     }

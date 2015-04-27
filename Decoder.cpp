@@ -15,7 +15,7 @@ std::string Decoder::encode(std::string alphaStr){
     for (int i = 0; i < alphaStr.length(); ++i){
         if (isalpha(alphaStr[i])) {
             tolower(alphaStr[i]);
-            morseString += Decoder::encoder[alphaStr[i]];
+			morseString += Decoder::encoder[alphaStr[i]] + " ";
         }
         else
             morseString += " ";
