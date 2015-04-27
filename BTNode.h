@@ -1,27 +1,38 @@
-//
-//  BTNode.h
-//  CS303-Project3B
-//
-//  Created by Eric Wilson on 4/17/15.
-//  Copyright (c) 2015 Eric Wilson. All rights reserved.
-//
+#ifndef BTNODE_H_
+#define BTNODE_H_
+#include <sstream>
 
-#ifndef __CS303_Project3B__BTNode__
-#define __CS303_Project3B__BTNode__
+/** A node for a Binary Tree. */
+template<typename Item_Type>
+struct BTNode
+{
+	// Data Fields
+	Item_Type data;
+	BTNode<Item_Type>* left;
+	BTNode<Item_Type>* right;
 
-#include <stdio.h>
-template <typename Item_Type>
+	// Constructor
+	BTNode(const Item_Type& the_data,
+		BTNode<Item_Type>* left_val = NULL,
+		BTNode<Item_Type>* right_val = NULL) :
+		data(the_data), left(left_val), right(right_val) {}
 
-class BTNode {
-private:
-    Item_Type data = nullptr;
-    BTNode* left = nullptr;
-    BTNode* right = nullptr;
-    
-public:
-    BTNode(){}
-    
-    
-};
+	// Destructor (to avoid warning message)
+	virtual ~BTNode() {}
 
-#endif /* defined(__CS303_Project3B__BTNode__) */
+	// to_string
+	virtual std::string to_string() const {
+		std::ostringstream os;
+		os << data;
+		return os.str();
+	}
+}; // End BTNode
+
+// Overloading the ostream insertion operator
+template<typename Item_Type>
+std::ostream& operator<<(std::ostream& out,
+	const BTNode<Item_Type>& node) {
+		return out << node.to_string();
+}
+
+#endif

@@ -1,0 +1,4 @@
+#ifndef __CS303_Project3B__MorseCode_Tree__
+#define __CS303_Project3B__MorseCode_Tree__
+
+#endif
