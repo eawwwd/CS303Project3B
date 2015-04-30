@@ -6,8 +6,12 @@
 //  Copyright (c) 2015 Eric Wilson. All rights reserved.
 //
 
-#include <iostream>
+#include "MorseCode_Translator.h"
 
-int main() {
-    
+int main(){
+    MorseCode_Translator mct;
+    mct.readMorseData();
+
+    system("pause");
+    return 0;
 }
