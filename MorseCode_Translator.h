@@ -10,20 +10,23 @@
 class MorseCode_Translator
 {
 public:
-    MorseCode_Translator() {}
-    void readMorseData();
-    void buildNode(char alphaChar, std::string morseStr);
-
+    MorseCode_Translator() : root(new BTNode<char>(' '))
+    {
+        readMorseData();
+    }
 private:
     BTNode<char>* root;
+    void readMorseData();
+    void buildTree(char alphaChar, std::string morseStr);
 };
 
 void MorseCode_Translator::readMorseData()
 {
-    std::ifstream morseFile;
     std::string filename = "morse.txt";
+    std::ifstream morseFile;
+    
 
-    morseFile.open(filename, std::ios::in);
+    morseFile.open(filename, std::ifstream::in);
 
     // In case the file is not found, return
     if (!morseFile.is_open())
@@ -43,31 +46,39 @@ void MorseCode_Translator::readMorseData()
         //std::cout << alphabet << "\n";
         std::string morseCode = line.substr(1, line.length() - 1);
         //std::cout << morseCode << "\n";
-        buildNode(alphabet, morseCode);
+        buildTree(alphabet, morseCode);
     }
 
     morseFile.close();
 };
 
-void MorseCode_Translator::buildNode(char alphaChar, std::string morseStr) 
+void MorseCode_Translator::buildTree(char alphaChar, std::string morseStr)
 {
     BTNode<char>* localRoot = root;
     for (std::string::iterator itr = morseStr.begin(); itr != morseStr.end(); ++itr)
     {
-        if (*itr == '.')
+        if (*itr == '.') // If dot, go left
         {
-            localRoot->left = new BTNode<char>(' ');
+            if (localRoot->left == NULL)
+            {
+                localRoot->left = new BTNode<char>(' ');
+            }
             localRoot = localRoot->left;
         }
-        else if (*itr == '_')
+        else if (*itr == '_') // If underscore, go right
         {
-            BTNode<char>* localNode;
-            localRoot->right = localNode;
+            if (localRoot->right == NULL)
+            {
+                localRoot->right = new BTNode<char>(' ');
+            }
             localRoot = localRoot->right;
         }
     }
 
-    localRoot->data = alphaChar;
+    if (localRoot != NULL)
+    {
+        localRoot->data = alphaChar;
+    }
 }
 
 #endif
