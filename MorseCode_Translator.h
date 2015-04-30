@@ -14,6 +14,7 @@ public:
     {
         readMorseData();
     }
+	std::string MorseCode_Translator::decode(std::string key);
 private:
     BTNode<char>* root;
     void readMorseData();
@@ -81,10 +82,10 @@ void MorseCode_Translator::buildTree(char alphaChar, std::string morseStr)
     }
 }
 
-std::string MorseCode_Translator::decode(std::string key, BTNode root)
+std::string MorseCode_Translator::decode(std::string key)
 {
     std::string result = "";
-    BTNode current = root;
+	BTNode<char> *current = root;
     
     for(int i = 0; i < key.length(); i++)
     {
@@ -97,14 +98,14 @@ std::string MorseCode_Translator::decode(std::string key, BTNode root)
         }
         else if(key[i] == '.')
         {
-            if(current-right != NULL)
+            if(current->right != NULL)
             {
                 current = current->right;
             }
         }
         else
         {
-            result = result.append(current->data);
+            result += current->data;
             current = root;
         }
         

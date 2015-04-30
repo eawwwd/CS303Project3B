@@ -10,7 +10,7 @@
 
 int main(){
     MorseCode_Translator mct;
-    mct.readMorseData();
+//    mct.readMorseData();
 
     system("pause");
     return 0;
