@@ -6,6 +6,7 @@
 #include <fstream>
 #include <exception>
 #include <string>
+#include <map>
 
 class MorseCode_Translator
 {
@@ -15,10 +16,12 @@ public:
         readMorseData();
     }
 	std::string MorseCode_Translator::decode(std::string key);
+	std::string encode(std::string alphaStr);
 private:
     BTNode<char>* root;
     void readMorseData();
     void buildTree(char alphaChar, std::string morseStr);
+	std::map<char, std::string> encoder;
 };
 
 void MorseCode_Translator::readMorseData()
@@ -48,6 +51,7 @@ void MorseCode_Translator::readMorseData()
         std::string morseCode = line.substr(1, line.length() - 1);
         //std::cout << morseCode << "\n";
         buildTree(alphabet, morseCode);
+		encoder[line[0]] = line.substr(1, std::string::npos);
     }
 
     morseFile.close();
@@ -112,6 +116,21 @@ std::string MorseCode_Translator::decode(std::string key)
     }
     
     return result;
+}
+
+std::string MorseCode_Translator::encode(std::string alphaStr){
+	std::string morseString = "";
+
+	for (int i = 0; i < alphaStr.length(); ++i){
+		if (isalpha(alphaStr[i])) {
+			tolower(alphaStr[i]);
+			morseString += MorseCode_Translator::encoder[alphaStr[i]] + " ";
+		}
+		else
+			morseString += " ";
+	}
+
+	return morseString;
 }
 
 #endif
