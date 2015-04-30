@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
-#include "BTNode.h"
+#include "Binary_Tree.h"
 #include <string>
 #include <map>
 
@@ -21,7 +21,7 @@ public:
     //default constructor
     Decoder(std::istream& fin){
         //create new root
-        decoderTree = new BTNode<char>;
+        decoderTree = new Binary_Tree<char>;
         if (fin.good()){
             //read file into object, this will also be where the tree is built
             while (!fin.eof()){
@@ -39,7 +39,7 @@ public:
     std::string encode(std::string alphaStr);
 private:
     //root
-    BTNode<char>* decoderTree = nullptr;
+    Binary_Tree<char>* decoderTree = nullptr;
     std::string decodedString = "";
     std::map<char, std::string> encoder;
     

@@ -22,6 +22,7 @@ int main() {
     getline(std::cin, inputStr);
     std::cout << decoder.encode(inputStr);
     
+	std::cout << std::endl;
 	system("pause");
     return 0;
 }
