@@ -81,4 +81,36 @@ void MorseCode_Translator::buildTree(char alphaChar, std::string morseStr)
     }
 }
 
+std::string MorseCode_Translator::decode(std::string key, BTNode root)
+{
+    std::string result = "";
+    BTNode current = root;
+    
+    for(int i = 0; i < key.length(); i++)
+    {
+        if(key[i] == '-')
+        {
+            if(current->left != NULL)
+            {
+                current = current->left;
+            }
+        }
+        else if(key[i] == '.')
+        {
+            if(current-right != NULL)
+            {
+                current = current->right;
+            }
+        }
+        else
+        {
+            result = result.append(current->data);
+            current = root;
+        }
+        
+    }
+    
+    return result;
+}
+
 #endif
