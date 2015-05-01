@@ -5,24 +5,19 @@
 //  Created by Eric Wilson on 4/17/15.
 //  Copyright (c) 2015 Eric Wilson. All rights reserved.
 //
+#include "MorseCode_Translator.h"
 
-#include <iostream>
-#include "Decoder.h"
-#include <fstream>
+int main(){
+    MorseCode_Translator mct;
+//    mct.readMorseData();
+	std::string hello = "hellohowareyou";
+	std::cout << hello << std::endl;
+	std::cout << mct.encode(hello) << std::endl;
 
-int main() {
-    std::ifstream fin;
-    fin.open("code.txt", std::ifstream::in);
-    if (fin.good())
-        std::cout << "File opened!";
-    Decoder decoder(fin);
-    std::string inputStr;
-    
-    std::cout << "Please enter string to be encoded:\n";
-    getline(std::cin, inputStr);
-    std::cout << decoder.encode(inputStr);
-    
-	std::cout << std::endl;
-	system("pause");
+	hello = mct.encode(hello);
+	std::cout << hello << std::endl;
+	std::cout << mct.decode(hello);
+
+    system("pause");
     return 0;
 }
