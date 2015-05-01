@@ -120,14 +120,17 @@ std::string MorseCode_Translator::decode(std::string key)
 
 std::string MorseCode_Translator::encode(std::string alphaStr){
 	std::string morseString = "";
-
+	//iterate through string comparing each character to encoding map
 	for (int i = 0; i < alphaStr.length(); ++i){
 		if (isalpha(alphaStr[i])) {
-			tolower(alphaStr[i]);
-			morseString += MorseCode_Translator::encoder[alphaStr[i]] + " ";
+			char tempChar = tolower(alphaStr[i]);
+			//build return string
+			morseString += MorseCode_Translator::encoder[tempChar] + " ";
 		}
+		else if (alphaStr[i] == ' ')
+			morseString += "     ";
 		else
-			morseString += " ";
+			continue;
 	}
 
 	return morseString;

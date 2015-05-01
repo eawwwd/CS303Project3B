@@ -11,6 +11,13 @@
 int main(){
     MorseCode_Translator mct;
 //    mct.readMorseData();
+	std::string hello = "hellohowareyou";
+	std::cout << hello << std::endl;
+	std::cout << mct.encode(hello) << std::endl;
+
+	hello = mct.encode(hello);
+	std::cout << hello << std::endl;
+	std::cout << mct.decode(hello);
 
     system("pause");
     return 0;
