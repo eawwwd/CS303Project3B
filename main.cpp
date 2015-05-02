@@ -9,14 +9,14 @@
 
 int main(){
     MorseCode_Translator mct;
-//    mct.readMorseData();
-	std::string hello = "hellohowareyou";
-	std::cout << hello << std::endl;
-	std::cout << mct.encode(hello) << std::endl;
+    std::string example = "Hello, how are you?";
+    std::string encodedString = mct.Encode(example);
+    std::string decodedString = mct.Decode(encodedString);
 
-	hello = mct.encode(hello);
-	std::cout << hello << std::endl;
-	std::cout << mct.decode(hello);
+
+    std::cout << "Example string: " << example << "\n";
+    std::cout << "Encoded string: " << encodedString << "\n";
+    std::cout << "Decoded string: " << decodedString << "\n";
 
     system("pause");
     return 0;
